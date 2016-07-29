@@ -1,0 +1,37 @@
+<template name="signUp">
+  <form id="sign-up-form">
+    <div class="form-group">
+      <label for="sign-up-username">Username</label>
+      <input type="text" name="signUpUsername" class="form-control" id="sign-up-username" placeholder="christianpena9">
+    </div>
+    <div class="form-group">
+      <label for="sign-up-email">Email address</label>
+      <input type="email" name="signUpEmail" class="form-control" id="sign-up-email" placeholder="johndoe@example.com">
+    </div>
+    <div class="form-group">
+      <label for="sign-up-password">Password</label>
+      <input type="password" name="signUpPassword" class="form-control" id="sign-up-password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</template>
+
+
+<template name="login">
+  <form id="login-form" style="display:none;">
+    <div class="form-group">
+      <label for="login-username">Email</label>
+      <input type="text" name="loginEmail" class="form-control" id="login-username" placeholder="johndoe@example.com">
+    </div>
+    <div class="form-group">
+      <label for="login-password">Password</label>
+      <input type="password" name="loginPassword" class="form-control" id="login-password" placeholder="Password">
+    </div>
+    <button id="submit" type="submit" class="btn btn-success">Submit</button>
+  </form>
+</template>
+
+<template name="dashboard">
+  <p>You're logged in.</p>
+  <p><a href="#" class="logout">Logout</a></p>
+</template>

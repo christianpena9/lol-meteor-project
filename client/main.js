@@ -3,20 +3,44 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
+if(Meteor.isClient) {
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
+	//Sign-up events
+	Template.signUp.events({
+		'submit form': function(event) {
+			event.preventDefault();
+			var usernameVar = event.target.signUpUsername.value;
+			var emailVar = event.target.signUpEmail.value;
+			var passwordVar = event.target.signUpPassword.value;
+			
+			// creating a new user
+			Accounts.createUser({
+				// options go here
+				email: emailVar,
+				password: passwordVar
+			});
+		}
+	});
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});
+	//Login events
+	Template.login.events({
+		'submit form': function(event) {
+			event.preventDefault();
+			var emailVar = event.target.loginEmail.value;
+			var passwordVar = event.target.loginPassword.value;
+			
+			// logging in a user
+			Meteor.loginWithPassword(emailVar, passwordVar);
+
+			$(signUpLoginButtons).css('display','none');
+		}
+	});
+
+	Template.dashboard.events({
+		'click .logout': function(event) {
+			event.preventDefault();
+			Meteor.logout();
+			$(signUpLoginButtons).css('display','inline');
+		}
+	});
+}
